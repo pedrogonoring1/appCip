@@ -1,8 +1,24 @@
-<p>ideia works!</p>
+<h3>Compartilhe sua ideia aqui</h3>
 
-<div *ngFor="let ideia of ideias">
+
+<form [formGroup]="ideiaForm" (ngSubmit)="onSubmit()">
+
+    <input type="text" placeholder="Digite um titulo" class="inputTxt" formControlName="titleIdeia">
+    <input type="text" placeholder="Descreva sua ideia" class="inputTxt" formControlName="descriptionIdeia">
+    <input type="text" placeholder="Digite seu nome" class="inputTxt" formControlName="name">
+
+    <button class="buttonInfo" type="submit" [disabled]="!ideiaForm.valid">Enviar</button>
+
+</form>
+
+
+
+<!-- For exebindo as ideias -->
+<div *ngFor="let ideia of ideias.reverse()">
     <h4>Titulo: {{ ideia.title }} </h4>
     <label> Descrição: {{ ideia.description }} </label>
     <h6> Colaborador: {{ ideia.name }} </h6>
 
 </div>
+
+<!-- .slice().reverse()  -->

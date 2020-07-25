@@ -1,1 +1,24 @@
-<p>problema works!</p>
+<h3>Compartilhe um problema aqui</h3>
+
+
+<form [formGroup]="problemaForm" (ngSubmit)="onSubmit()">
+
+    <input type="text" placeholder="Digite um titulo" class="inputTxt" formControlName="titleProblema">
+    <input type="text" placeholder="Descreva o problema" class="inputTxt" formControlName="descriptionProblema">
+    <input type="text" placeholder="Digite seu nome" class="inputTxt" formControlName="name">
+
+    <button class="buttonInfo" type="submit" [disabled]="!problemaForm.valid">Enviar</button>
+
+</form>
+
+
+
+<!-- For exebindo as ideias -->
+<div *ngFor="let problema of problemas.slice().reverse()">
+    <h4>Titulo: {{ problema.title }} </h4>
+    <label> Descrição: {{ problema.description }} </label>
+    <h6> Colaborador: {{ problema.name }} </h6>
+
+</div>
+
+<!-- .slice().reverse()  -->
