@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Ideia } from '../models/ideia';
 
 import { FormBuilder, Validators } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { IdeiaService } from '../ideia.service';
 
 @Component({
@@ -12,8 +13,9 @@ import { IdeiaService } from '../ideia.service';
 export class IdeiaComponent implements OnInit {
 
   ideias = null;
+  modalRef: BsModalRef;
 
-  constructor(private IdeiaService: IdeiaService, private fb: FormBuilder) { 
+  constructor(private IdeiaService: IdeiaService, private fb: FormBuilder, private modalService: BsModalService) { 
     //this.ideiasPadrao.push(new Ideia('Pedro', 'Formulario Online', 'Colaboradores compartilhar ideias por form online'));
     //this.ideias.push(new Ideia('Maria', 'App Vistoria', 'App para realizar vistorias eficazes'));
 
@@ -56,6 +58,10 @@ export class IdeiaComponent implements OnInit {
 
   saveIdeia(ideia: Ideia) {
       this.IdeiaService.saveIdeia(ideia).subscribe(() => {});
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }

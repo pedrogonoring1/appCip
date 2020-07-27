@@ -1,23 +1,62 @@
-<h3>Compartilhe um problema aqui</h3>
+<div class="container"> 
 
 
-<form [formGroup]="problemaForm" (ngSubmit)="onSubmit()">
+    <div class="row text-center mt-5 mb-1">
+        <div class="col-12">
+            <h4>Compartilhe um problema</h4>
+        </div>
+    </div>
 
-    <input type="text" placeholder="Digite um titulo" class="inputTxt" formControlName="titleProblema">
-    <input type="text" placeholder="Descreva o problema" class="inputTxt" formControlName="descriptionProblema">
-    <input type="text" placeholder="Digite seu nome" class="inputTxt" formControlName="name">
+    <div class="row text-center">
+        <div class="col-12">
+            <form [formGroup]="problemaForm" (ngSubmit)="onSubmit()">
+                <input type="text" placeholder="Digite um titulo" class="inputTxt" formControlName="titleProblema"> <br>
+                <textarea type="text" placeholder="Descreva o problema" class="inputTxt-Description" formControlName="descriptionProblema"> </textarea> <br>
+                <input type="text" placeholder="Digite seu nome" class="inputTxt" formControlName="name"> <br>
+                <button class="btn btn-primary mb-3" type="submit" [disabled]="!problemaForm.valid" (click)="openModal(template)">Enviar</button>
+            </form>
+        </div>
+    </div>
 
-    <button class="buttonInfo" type="submit" [disabled]="!problemaForm.valid">Enviar</button>
 
-</form>
+    <div class="row text-center mt-5 mb-2">
+        <div class="col-12">
+            <h5>Problemas adicionados recentemente</h5>
+        </div>
+    </div>
 
 
+    <!-- For exebindo as ideias -->
+    <div class="row text-center">
+        <div class="col-12 text-left">
+            <div *ngFor="let problema of problemas" class="mb-4 card-infos-problema">
+                <div class="head-card-problema mb-3">
+                    <h5 class="mr-4">{{ problema.title }} </h5>
+                </div>
+                <div class="ml-4 mr-4 mb-2">
+                    <strong class="font-wigth ">Descrição: </strong> <label class=""> {{ problema.description }} </label> <br>
+                <strong class="">Colaborador: </strong> <label class="">{{ problema.name }} </label>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
-<!-- For exebindo as ideias -->
-<div *ngFor="let problema of problemas">
-    <h4>Titulo: {{ problema.title }} </h4>
-    <label> Descrição: {{ problema.description }} </label>
-    <h6> Colaborador: {{ problema.name }} </h6>
+
+    <!-- Modal de mensagem de sucesso -->
+    <ng-template #template>
+        <div class="modal-header text-center">
+            <img src="https://i.ibb.co/6Fs2CjH/190411.png" class="img-fluid img-sucess" alt=""> <h4 class="modal-title pull-center">Registrado com Sucesso!</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <img src="https://i.ibb.co/v12Lj7v/75-smile.gif" class="img-fluid" alt="">  
+        </div>
+    </ng-template>
+
+
 
 </div>
 

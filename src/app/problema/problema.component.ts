@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Problema } from '../models/problema';
 
 import { FormBuilder, Validators } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ProblemaService } from '../problema.service';
 
 @Component({
@@ -12,8 +13,9 @@ import { ProblemaService } from '../problema.service';
 export class ProblemaComponent implements OnInit {
 
   problemas;
+  modalRef: BsModalRef;
 
-  constructor(private ProblemaService: ProblemaService, private fb: FormBuilder) { 
+  constructor(private ProblemaService: ProblemaService, private fb: FormBuilder, private modalService: BsModalService) { 
     //this.problemas.push(new Problema('Pedro Lindo', 'Formulario Online', 'Colaboradores compartilhar ideias por form online'));
     //this.problemas.push(new Problema('Maria', 'App Vistoria', 'App para realizar vistorias eficazes'));
 
@@ -55,6 +57,10 @@ export class ProblemaComponent implements OnInit {
 
   saveProblema(problema: Problema) {
       this.ProblemaService.saveProblema(problema).subscribe(() => {});
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }

@@ -6,8 +6,8 @@ import { IdeiaComponent } from './ideia/ideia.component';
 import { ProblemaComponent } from './problema/problema.component';
 import { HeadComponent } from './head/head.component';
 import { routing } from './app.routing';
-import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,13 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
     IdeiaComponent,
     ProblemaComponent,
     HeadComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     routing,
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
